@@ -32,7 +32,7 @@ const Card = ({ weatherInfo, onSearch }) => {
     const shareData = {
       title: "Weather App 🌦️",
       text: "Check out this weather forecast!",
-      url: window.location.href, // this will share your website URL
+      url: window.location.href, 
     };
 
     try {
@@ -50,9 +50,7 @@ const Card = ({ weatherInfo, onSearch }) => {
 
   const { location, current } = weatherInfo;
 
-  // Helper function to get weather title & icon based on temp_c
   const getTempTitleAndIcon = (temp) => {
-    // Use default temp if temp is missing
     const t = temp ?? 20;
 
     if (t >= 30) {
@@ -202,59 +200,24 @@ const Card = ({ weatherInfo, onSearch }) => {
         </div>
       </div>
 
-      {/* 
-
-      <div className="daily-data">
-        <div className="days">
-          <p>Mon</p>
-          <FontAwesomeIcon icon={faCloudMoonRain} size="2x" />
-          <h5>27°</h5>
-        </div>
-
-        <div className="days">
-          <p>Mon</p>
-          <FontAwesomeIcon icon={faCloudMoonRain} size="2x" />
-          <h5>27°</h5>
-        </div>
-
-        <div className="days">
-          <p>Mon</p>
-          <FontAwesomeIcon icon={faCloudMoonRain} size="2x" />
-          <h5>27°</h5>
-        </div>
-
-        <div className="days">
-          <p>Mon</p>
-          <FontAwesomeIcon icon={faCloudMoonRain} size="2x" />
-          <h5>27°</h5>
-        </div>
-
-        <div className="days">
-          <p>Mon</p>
-          <FontAwesomeIcon icon={faCloudMoonRain} size="2x" />
-          <h5>27°</h5>
-        </div>
-      </div> */}
+     
 
       <div className="daily-data">
         {weatherInfo.forecast.forecastday.slice(1).map((day, index) => {
           const date = new Date(day.date);
 
-          // Get short weekday name, e.g., "Mon"
           const weekday = date.toLocaleString("en-US", { weekday: "short" });
 
-          // Get day/month format, e.g., "10/10"
           const dayMonth = `${date.getDate()}/${date.getMonth() + 1}`;
 
-          const iconUrl = "https:" + day.day.condition.icon; // icon from API
-          const temp = Math.round(day.day.avgtemp_c); // average temp
+          const iconUrl = "https:" + day.day.condition.icon; 
+          const temp = Math.round(day.day.avgtemp_c);
 
           return (
             <div className="days" key={index}>
               <p>
                 {weekday} {dayMonth}
               </p>{" "}
-              {/* Shows: Mon 10/10 */}
               <img
                 src={iconUrl}
                 alt={day.day.condition.text}
